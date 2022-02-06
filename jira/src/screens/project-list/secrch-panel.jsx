@@ -1,15 +1,9 @@
 import {useEffect, useState} from "react";
+import React from "react";
 
-export const SearchPanel =()=>{
-   const [param,setParam] = useState({  //useState（）中传入初始化的状态
-    //   解构赋值：得到state的最新状态，和一个setParam函数
-    name:'',
-    personId:''//这是进行初始化
-   })
-
+export const SearchPanel =({param,setParam})=>{
     const [users, setUsers]=useState([])
 
-    useEffect(()=>{},[param]) //deps发生改变后会执行第一个函数
     return <form >
         <div>
             {/*setParam(Object.assign({}//目标函数 ,param,{name:evt.target.value}))*/
@@ -23,7 +17,7 @@ export const SearchPanel =()=>{
             ...param,
             name:evt.target.value
             })}>负责人</section>
-            <option value={""}>a</option>
+            <option value={""}>负责人</option>
             {users.map(user =><option value={user.id}>{user.name}</option>)}
 
         </div>
