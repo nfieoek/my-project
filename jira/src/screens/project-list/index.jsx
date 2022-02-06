@@ -2,6 +2,8 @@ import React from "react";
 import {SearchPanel} from "./secrch-panel";
 import {List} from "./list";
 import {useEffect, useState} from "react";
+import qs from "qs";
+import {cleanObject} from "../../utils";
 
 const apiUrl=process.env.REACT_APP_API_URL
 
@@ -18,7 +20,7 @@ export const ProjectListScreen = () => {
     const [users, setUsers]=useState([])
 
     useEffect(()=>{
-        fetch(`${apiUrl}/projects?name=${param.name}&personId=${param.personId}`).then(async (response)=>{//列表发生变化时发出异步请求
+        fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`).then(async response => {//列表发生变化时发出异步请求
             if(response.ok){
                 setList(await response.json())
             }
@@ -31,7 +33,7 @@ export const ProjectListScreen = () => {
                 setUsers(await response.json())
             }
         })
-    } )
+    },[param])
 
     return <div>
         <SearchPanel users={users} param={param} setParam={setParam}/>

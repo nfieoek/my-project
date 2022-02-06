@@ -9,12 +9,12 @@ export const List =({list,users})=>{
         </tr>
         </thead>
         <tbody>
-        {
-            list.map(project =><tr key={project.id}>
-                <td>{project.name}</td>
-                <td>{users.find(users => users.id ===project.personId)?.name||'未知'}</td>
-            </tr>)
-        }
+    {
+        list.map(project =><tr key={project.id}>
+        <td>{project.name}</td>
+        <td>{users.find(users => users.id ===project.personId)?.name||'未知'}</td>
+    </tr>)
+    }
         </tbody>
     </table>
 }

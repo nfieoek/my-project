@@ -13,7 +13,7 @@ export const SearchPanel =({users,param,setParam})=>{
             })}/>
             <select value={param.personId} onChange={evt =>setParam({
             ...param,
-            name:evt.target.value
+            personId:evt.target.value
             })}>
                 <option value={''}>负责人</option>
             {
