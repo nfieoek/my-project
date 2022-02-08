@@ -1,6 +1,21 @@
 import React from "react";
+import {User} from "./secrch-panel";
 //结构赋值从props中的list和users
-export const List =({list,users})=>{
+export interface  Project{
+    id:string;
+    name:string;
+    personId:string;
+    pin:boolean;
+    organization:string;
+}
+
+
+
+interface ListProps{
+    list:Project[]
+    users: User[];
+}
+export const List =({list,users}:ListProps)=>{
     return <table>
         <thead>
         <tr>

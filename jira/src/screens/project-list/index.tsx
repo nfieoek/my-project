@@ -19,7 +19,7 @@ export const ProjectListScreen = () => {
 
     const [users, setUsers]=useState([])
 
-    const debouncedParam = useDebounce(param,2000)
+    const debouncedParam = useDebounce(param,500)
 
 //列表发生变化时发出异步请求，通过useEffect函数刷新页面
     useEffect(()=>{
@@ -46,7 +46,7 @@ export const ProjectListScreen = () => {
 }
 
 //hook只能在组件中运行或其他hook中运行
-export const useMount = (callback) => {
+export const useMount = (callback: { (): void; (): void; }) => {
   useEffect(()=>{
         callback()
   },[])
