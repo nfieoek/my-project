@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export const isFalsy = (value:any) =>  value === 0 ? false:!value
+export const isFalsy = (value:unknown) =>  value === 0 ? false:!value
 //定义一个isFalsy,如果参数为0，返回false，不为零返回一个布尔值，该布尔值由value取反转换为布尔值
 
 //在一个函数里，改变传入的对象本身是不好的，会污染参数
@@ -54,7 +54,7 @@ export const useMount=(callback:()=>void) =>{
 //     }
 // }
 
-export const useDebounce = (value:any,delay?:number) => { //定义一个customHook
+export const useDebounce = (value:unknown,delay?:number):any=> { //定义一个customHook
     const [debouncedValue,setDebouncedValue] =useState(value)  //定义一个
     useEffect(()=>{
         //每次value变化以后设置一个定时器

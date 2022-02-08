@@ -21,6 +21,8 @@ export const ProjectListScreen = () => {
 
     const debouncedParam = useDebounce(param,500)
 
+//   unknown不能赋值给任何类型的值
+
 //列表发生变化时发出异步请求，通过useEffect函数刷新页面
     useEffect(()=>{
         fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`).then(async response => {//fetch函数获得后台数据
