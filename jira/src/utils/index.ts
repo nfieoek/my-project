@@ -54,7 +54,7 @@ export const useMount=(callback:()=>void) =>{
 //     }
 // }
 
-export const useDebounce = (value:unknown,delay?:number):any=> { //定义一个customHook
+export const useDebounce = <V>(value:V,delay?:number):any=> { //定义一个customHook
     const [debouncedValue,setDebouncedValue] =useState(value)  //定义一个
     useEffect(()=>{
         //每次value变化以后设置一个定时器
