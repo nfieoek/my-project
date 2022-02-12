@@ -55,7 +55,9 @@ export const useMount=(callback:()=>void) =>{
 // }
 
 export const useDebounce = <V>(value:V,delay?:number):any=> { //定义一个customHook
+
     const [debouncedValue,setDebouncedValue] =useState(value)  //定义一个
+
     useEffect(()=>{
         //每次value变化以后设置一个定时器
         const timeout = setTimeout(()=>setDebouncedValue(value),delay)
@@ -65,3 +67,34 @@ export const useDebounce = <V>(value:V,delay?:number):any=> { //定义一个cust
     //返回一个内部函数debouncedValue
     return debouncedValue
 }
+
+export const useArray = <A>(initialArray:A[]) =>{
+const [value,setValue]=useState(initialArray)
+    return {
+    value,setValue,
+    add:(item:A) =>setValue([...value,item]),
+    clear:()=>{setValue([])},
+    removeIndex:(index:number)=>{
+        const copy = [...value]
+        copy.splice(index,1)
+        setValue(copy)
+    }
+    }
+}
+//
+// var cloneObj = function(obj){
+//     var str, newobj = obj.constructor === Array ? [] : {};
+//     if(typeof obj !== 'object'){
+//         return;
+//     } else if(window.JSON){
+//         str = JSON.stringify(obj), //系列化对象
+//             newobj = JSON.parse(str); //还原
+//     } else {
+//         for(var i in obj){
+//             newobj[i] = typeof obj[i] === 'object' ?
+//                 cloneObj(obj[i]) : obj[i];
+//         }
+//     }
+//     return newobj;
+// };
+
