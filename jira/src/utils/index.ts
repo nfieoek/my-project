@@ -68,11 +68,12 @@ export const useDebounce = <V>(value:V,delay?:number):any=> { //定义一个cust
     return debouncedValue
 }
 
-export const useArray = <A>(initialArray:A[]) =>{
+export const useArray = <T>(initialArray:T[]) =>{
 const [value,setValue]=useState(initialArray)
     return {
-    value,setValue,
-    add:(item:A) =>setValue([...value,item]),
+         value,
+        setValue,
+    add:(item:T) =>setValue([...value,item]),
     clear:()=>{setValue([])},
     removeIndex:(index:number)=>{
         const copy = [...value]
@@ -81,20 +82,3 @@ const [value,setValue]=useState(initialArray)
     }
     }
 }
-//
-// var cloneObj = function(obj){
-//     var str, newobj = obj.constructor === Array ? [] : {};
-//     if(typeof obj !== 'object'){
-//         return;
-//     } else if(window.JSON){
-//         str = JSON.stringify(obj), //系列化对象
-//             newobj = JSON.parse(str); //还原
-//     } else {
-//         for(var i in obj){
-//             newobj[i] = typeof obj[i] === 'object' ?
-//                 cloneObj(obj[i]) : obj[i];
-//         }
-//     }
-//     return newobj;
-// };
-
