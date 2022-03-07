@@ -1,8 +1,8 @@
 //在真实环境中 使用firebase第三方 auth服务，本文件不需要开发中开发
+import {User} from "./screens/project-list/secrch-panel";
 
 const apiUrl = process.env.REACT_APP_API_URL
 
-import {User} from "./screens/project-list/secrch-panel";
 
 const localStorageKey = '__auth_provider_token__'
 
@@ -26,11 +26,12 @@ export const login = (data: { username: string, password: string }) => {
         async (response) => {
             if (response.ok) {
                 return handleUserResponse(await response.json())
+            } else {
+                return Promise.reject(data)
             }
         }
     )
 }
-
 
 
 export const register = (data: { username: string, password: string }) => {
@@ -44,7 +45,10 @@ export const register = (data: { username: string, password: string }) => {
         async (response) => {
             if (response.ok) {
                 return handleUserResponse(await response.json())
+            }else {
+                return Promise.reject(data)
             }
         }
     )
 }
+export const logout = async () =>window.localStorage.removeItem(localStorageKey)
