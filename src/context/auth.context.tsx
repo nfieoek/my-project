@@ -6,7 +6,7 @@ interface AuthForm {
     username: string
     password: string
 }
-
+//定义创建一个AutoContext 其中包括user，register，login，logout四个类型的变量
 const AuthContext = React.createContext<| {
     user: User | null;
     register: (form: AuthForm) => Promise<void>;
@@ -16,7 +16,7 @@ const AuthContext = React.createContext<| {
     | undefined>(undefined);
 AuthContext.displayName = "AuthContext";
 
-
+//定义一个AuthProvider ，传入一个form表单，然后通过auth-provider对login，register，logout，并且对user进行初始化，设定user，
 export const AuthProvider = ({children}: { children: ReactNode }) => {
 
     const [user, setUser] = useState<User | null>(null)
@@ -29,7 +29,7 @@ export const AuthProvider = ({children}: { children: ReactNode }) => {
     return <AuthContext.Provider children={children} value={{user, login, register, logout}}/>
 }
 
-
+//定义各个useAuth，从AuthContext中获取context并返回context
 export const useAuth = () => {
     const context = React.useContext(AuthContext);
     if (!context) {
